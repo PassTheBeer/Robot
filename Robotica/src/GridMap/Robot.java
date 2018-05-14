@@ -2,7 +2,7 @@ package GridMap;
 
 import java.awt.*;
 
-public class Robot{
+public class Robot {
 
     Grid grid;
     AlgoritmeKiezer algokiezer;
@@ -10,7 +10,7 @@ public class Robot{
     int aantal_Sensoren = 4;
     Thread sensoren[] = new Thread[aantal_Sensoren];
 
-    Motor rechterMotor,linkerMotor;
+    Motor rechterMotor, linkerMotor;
 
     private Point position;
 
@@ -27,12 +27,9 @@ public class Robot{
 
         }
 
-        Thread linkerMotor = new Motor();
-        Thread rechterMotor = new Motor();
+        Thread linkerMotor = new Thread(new Motor());
+        Thread rechterMotor = new Thread(new Motor());
         position = new Point(0, 0);
-
-
-
 
 
     }
@@ -52,7 +49,7 @@ public class Robot{
     }
 
 
-//
+    //
     public void RijNaarVoren() {
         rechterMotor.setRichting(true);
         linkerMotor.setRichting(true);
@@ -61,7 +58,8 @@ public class Robot{
         linkerMotor.setSpeed(50);
 
     }
-//
+
+    //
     public void RijNaarAchter() {
         rechterMotor.setRichting(false);
         linkerMotor.setRichting(false);
@@ -70,7 +68,7 @@ public class Robot{
         linkerMotor.setSpeed(50);
     }
 
-    public void stop(){
+    public void stop() {
         rechterMotor.setSpeed(0);
         linkerMotor.setSpeed(0);
     }

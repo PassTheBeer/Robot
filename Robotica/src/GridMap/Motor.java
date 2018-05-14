@@ -1,6 +1,6 @@
 package GridMap;
 
-public class Motor extends Thread {
+public class Motor implements Runnable {
 
     private int speed = 0;
 
@@ -8,6 +8,7 @@ public class Motor extends Thread {
 
 
     public Motor() {
+        System.out.println("Motor geïnitialiseerd");
 
         this.speed = 0;
 
@@ -33,6 +34,8 @@ public class Motor extends Thread {
 
     @Override
     public void run() {
+
+
 
     }
 }
