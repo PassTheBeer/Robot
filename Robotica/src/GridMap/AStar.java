@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-import com.sun.prism.Graphics;
-
 public class AStar {
 
 	Robot robot = new Robot();
