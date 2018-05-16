@@ -28,8 +28,8 @@ public class Sensor implements Runnable {
     }
 
 
-    public void scan() {
-        Connection.getInstance().connect();
+    private void scan() {
+        Connection_spi.getInstance().connect();
 
 
     }
