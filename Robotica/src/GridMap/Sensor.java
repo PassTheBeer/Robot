@@ -1,6 +1,5 @@
 package GridMap;
 
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Sensor implements Runnable {

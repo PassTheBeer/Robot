@@ -35,7 +35,7 @@ public class Connection {
 
         synchronized (this) {
             connections++;
-            System.out.println("Amount of connections: " + connections);
+            //System.out.println("Amount of connections: " + connections);
         }
 
         try {
@@ -48,5 +48,9 @@ public class Connection {
             connections--;
         }
 
+    }
+
+    public int getConnections() {
+        return connections;
     }
 }
