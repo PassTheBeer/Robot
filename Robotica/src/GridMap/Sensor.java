@@ -22,21 +22,15 @@ public class Sensor implements Runnable {
     public void run() {
         //System.out.println("asdad");
         for (int i = 0; i < 10; i++) {
-            try {
-                Thread.sleep(0);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             System.out.println(this.ID + "   ");
             this.scan();
         }
     }
 
 
-
-    public void scan(){
+    public void scan() {
         Connection.getInstance().connect();
-
 
 
     }

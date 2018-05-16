@@ -31,7 +31,7 @@ public class Connection {
 
     }
 
-    public void doConnect() {
+    private void doConnect() {
 
         synchronized (this) {
             connections++;
@@ -39,7 +39,7 @@ public class Connection {
         }
 
         try {
-            Thread.sleep(50);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
