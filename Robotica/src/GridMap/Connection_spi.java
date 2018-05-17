@@ -63,8 +63,8 @@ public class Connection_spi {
 //        console.title("<-- The Pi4J Project -->", "SPI test program using MCP3004/MCP3008 AtoD Chip");
 //
 //        console.promptForExit();
-
-
+//
+//
 //
 //        try {
 //            spi = SpiFactory.getInstance(SpiChannel.CS0, SpiDevice.DEFAULT_SPI_SPEED, SpiDevice.DEFAULT_SPI_MODE);// default spi mode 0
