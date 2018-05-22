@@ -33,9 +33,7 @@ public class Connection_spi {
 
     }
 
-    public static Connection_spi getInstance() {
-        return instance;
-    }
+
 
     public void connect() {
         try {
@@ -137,5 +135,9 @@ public class Connection_spi {
 
     public int getConnections() {
         return connections;
+    }
+
+    public static Connection_spi getInstance() {
+        return instance;
     }
 }
