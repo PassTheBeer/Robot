@@ -1,5 +1,7 @@
 package GridMap;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 import com.pi4j.io.spi.SpiChannel;
@@ -8,6 +10,7 @@ import com.pi4j.io.spi.SpiFactory;
 import com.pi4j.util.Console;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 
 //https://github.com/Pi4J/pi4j/tree/master/pi4j-example/src/main/java
@@ -16,7 +19,7 @@ public class Connection_spi {
 
     private static Connection_spi instance = new Connection_spi();
     private int connections;
-    private Semaphore sem = new Semaphore(1);
+    static private Semaphore sem = new Semaphore(1);
 
     // SPI device
     public static SpiDevice spi = null;
@@ -34,21 +37,21 @@ public class Connection_spi {
     }
 
 
-
     public void connect() {
+
         try {
             sem.acquire();
-
             try {
-                System.out.println(sem);
+                System.out.println("Amount of Permits of the Semaphore "+sem.availablePermits());
                 doConnect();
             } finally {
                 sem.release();
+                System.out.println("Amount of Permits of the Semaphore "+sem.availablePermits());
+
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
 
 
     }

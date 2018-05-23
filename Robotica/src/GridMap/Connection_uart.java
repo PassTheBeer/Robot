@@ -39,9 +39,6 @@ public class Connection_uart {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
-
     }
 
     private void doConnect(int value) throws InterruptedException, IOException {
@@ -115,7 +112,7 @@ public class Connection_uart {
             serial.open(config);
 
             // continuous loop to keep the program running until the user terminates the program
-            while(console.isRunning()) {
+            while (console.isRunning()) {
                 try {
 
                     serial.write("");
@@ -124,8 +121,7 @@ public class Connection_uart {
                     serial.write((byte) value);
 
 
-                }
-                catch(IllegalStateException ex){
+                } catch (IllegalStateException ex) {
                     ex.printStackTrace();
                 }
 
@@ -137,13 +133,10 @@ public class Connection_uart {
                 }
             }
 
-        }
-        catch(IOException ex) {
+        } catch (IOException ex) {
             console.println(" ==>> SERIAL SETUP FAILED : " + ex.getMessage());
             return;
         }
-
-
 
 
         try {

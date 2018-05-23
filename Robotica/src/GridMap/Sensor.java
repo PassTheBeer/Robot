@@ -20,9 +20,9 @@ public class Sensor implements Runnable {
     @Override
     public void run() {
         //System.out.println("asdad");
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
 
-            System.out.println(this.ID + "   ");
+            //System.out.println(this.ID + "   ");
             this.scan();
         }
     }
@@ -30,7 +30,7 @@ public class Sensor implements Runnable {
 
     private void scan() {
 
-        //Connection_spi.getInstance().connect();
+        Connection_spi.getInstance().connect();
 
     }
 
