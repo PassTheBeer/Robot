@@ -38,16 +38,18 @@ public class Connection_spi {
     public void connect() {
         try {
             sem.acquire();
+
+            try {
+                System.out.println(sem);
+                doConnect();
+            } finally {
+                sem.release();
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        try {
-            System.out.println(sem);
-            doConnect();
-        } finally {
-            sem.release();
-        }
+
 
     }
 
