@@ -15,11 +15,25 @@ public class Motor implements Runnable {
     }
 
 
+
+
+
+    @Override
+    public void run() {
+
+        setSpeed(50);
+
+    }
+
     public int getSpeed() {
         return speed;
     }
 
     public void setSpeed(int speed) {
+        for(int i = 0; i<10;i++){
+            Connection_uart.getInstance().connect(speed);
+        }
+
         this.speed = speed;
     }
 
@@ -29,13 +43,5 @@ public class Motor implements Runnable {
 
     public void setRichting(boolean richting) {
         this.richting = richting;
-    }
-
-
-    @Override
-    public void run() {
-
-
-
     }
 }

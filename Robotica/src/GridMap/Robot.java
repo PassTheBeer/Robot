@@ -21,7 +21,7 @@ public class Robot {
         algokiezer = new AlgoritmeKiezer();
         for (int i = 0; i < aantal_Sensoren; i++) {
             Thread temp = new Thread(new Sensor());
-            sensoren[i] = new Thread(temp);
+            sensoren[i] = temp;
 
             sensoren[i].start();
 
@@ -29,6 +29,8 @@ public class Robot {
 
         Thread linkerMotor = new Thread(new Motor());
         Thread rechterMotor = new Thread(new Motor());
+        linkerMotor.start();
+        rechterMotor.start();
         position = new Point(0, 0);
 
 
