@@ -31,7 +31,8 @@ public class Motor implements Runnable {
 
     public void setSpeed(int speed) {
         for(int i = 0; i<10;i++){
-            //Connection_uart.getInstance().connect(speed);
+
+            Connection_uart.getInstance().connect(speed);
         }
 
         this.speed = speed;

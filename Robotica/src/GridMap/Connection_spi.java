@@ -42,11 +42,11 @@ public class Connection_spi {
         try {
             sem.acquire();
             try {
-                System.out.println("Amount of Permits of the Semaphore "+sem.availablePermits());
+                System.out.println("Sensor Amount of Permits of the Semaphore "+sem.availablePermits());
                 doConnect();
             } finally {
                 sem.release();
-                System.out.println("Amount of Permits of the Semaphore "+sem.availablePermits());
+                System.out.println("Sensor Amount of Permits of the Semaphore "+sem.availablePermits());
 
             }
         } catch (InterruptedException e) {

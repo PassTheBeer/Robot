@@ -20,7 +20,7 @@ public class Sensor implements Runnable {
     @Override
     public void run() {
         //System.out.println("asdad");
-        for (int i = 0; i < 5; i++) {
+        while(true) {
 
             //System.out.println(this.ID + "   ");
             this.scan();

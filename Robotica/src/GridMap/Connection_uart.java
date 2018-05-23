@@ -24,18 +24,19 @@ public class Connection_uart {
     }
 
     public void connect(int value) {
+
         try {
             sem.acquire();
-
             try {
-                //System.out.println(value);
+                System.out.println("Motor Amount of Permits of the Semaphore "+sem.availablePermits());
                 doConnect(value);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 sem.release();
-            }
+                System.out.println("Motor Amount of Permits of the Semaphore "+sem.availablePermits());
 
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -47,6 +48,8 @@ public class Connection_uart {
             connections++;
             System.out.println("Amount of connections: " + connections);
         }
+
+        /*
 
         final Console console = new Console();
 
@@ -137,13 +140,14 @@ public class Connection_uart {
             console.println(" ==>> SERIAL SETUP FAILED : " + ex.getMessage());
             return;
         }
-
+        */
 
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
 
         synchronized (this) {
             connections--;
