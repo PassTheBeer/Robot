@@ -1,5 +1,7 @@
 package GridMap;
 
+import java.nio.channels.FileLock;
+import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Sensor implements Runnable {
@@ -7,7 +9,8 @@ public class Sensor implements Runnable {
 
     private static final AtomicInteger uniqueId = new AtomicInteger();
     private int ID;
-    private float afstand;
+
+
 
 
     public Sensor() {
@@ -20,7 +23,7 @@ public class Sensor implements Runnable {
     @Override
     public void run() {
         //System.out.println("asdad");
-        while(true) {
+        while (true) {
 
             //System.out.println(this.ID + "   ");
             this.scan();
@@ -28,17 +31,18 @@ public class Sensor implements Runnable {
     }
 
 
-    private void scan() {
 
+    private void scan() {
         Connection_spi.getInstance().connect();
 
-    }
 
-
-    public void plaatsObject() {
-
+        //afstand = Connection_spi.getInstance().getAfstand();
+        //System.out.println(afstand);
 
     }
+
+
+
 
     public int getID() {
         return ID;
@@ -47,5 +51,7 @@ public class Sensor implements Runnable {
     public void setID(int ID) {
         this.ID = ID;
     }
+
+
 
 }

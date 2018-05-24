@@ -1,6 +1,8 @@
 package GridMap;
 
 import java.awt.*;
+import java.util.LinkedList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Robot {
 
@@ -8,39 +10,61 @@ public class Robot {
     AlgoritmeKiezer algokiezer;
 
     int aantal_Sensoren = 4;
-    Thread sensoren[] = new Thread[aantal_Sensoren];
+
+    LinkedList<Thread> sensoren = new LinkedList<Thread>();
+
+    //Thread sensoren[] = new Thread[aantal_Sensoren];
 
     Motor rechterMotor, linkerMotor;
 
     private Point position;
 
+    public static int _tmp = 0;
 
     Robot() {
         System.out.println("Robot aangemaakt!! =__=");
         grid = new Grid();
         algokiezer = new AlgoritmeKiezer();
+
         for (int i = 0; i < aantal_Sensoren; i++) {
             Thread temp = new Thread(new Sensor());
-            sensoren[i] = temp;
+            sensoren.add(temp);
 
-            sensoren[i].start();
+            sensoren.get(i).start();
 
         }
 
         Thread linkerMotor = new Thread(new Motor());
         Thread rechterMotor = new Thread(new Motor());
-        linkerMotor.start();
-        rechterMotor.start();
+        //linkerMotor.start();
+        //rechterMotor.start();
         position = new Point(0, 0);
 
 
     }
-	
-	/*public void StartRobot() {
-		
-	}
 
-	*/
+    public void startRobot() {
+
+        while (true) {
+
+            if (position != grid.getKeysByValue(grid.map ,Obstakel.P)) {
+
+                //System.out.println(grid.getKeysByValue(grid.map,Obstakel.P));
+
+                System.out.println("ROBOT   "  );
+
+
+
+                algokiezer.RunAStar();
+
+            }
+
+
+        }
+
+
+    }
+
 
     public Point getPosition() {
         return position;

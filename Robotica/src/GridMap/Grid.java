@@ -26,6 +26,7 @@ public class Grid {
         ob_coordinaten = new ArrayList<Point>();
         beginpunt = new Point(0, 0);
         eindpunt = new Point((grid_width - 1), (grid_height - 1));
+        genereerCoords();
     }
 
     public void genereerCoords() {
@@ -108,6 +109,13 @@ public class Grid {
         getBeginEindCoords().add(coords_e);
         map.put(coords_e, Obstakel.P);
     }
+
+    public void beweegRobot(Point point, Point nieuw){
+        map.replace(point, Obstakel.l);
+        map.replace(nieuw, Obstakel.P);
+    }
+
+
 
     public void padZien(HashMap<Point, Obstakel> map, Point coords) {
         map.put(coords, Obstakel.l);

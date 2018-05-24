@@ -12,7 +12,7 @@ import java.util.Set;
 public class AStar {
 
     Robot robot = new Robot();
-    Node anode;
+
 
     Node[] nodes = new Node[Grid.aantal_nodes];
     private static double pytho = Math.sqrt(Math.pow(Grid.lengte_node, 2) + Math.pow(Grid.lengte_node, 2));

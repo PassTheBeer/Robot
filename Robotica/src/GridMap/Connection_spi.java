@@ -31,6 +31,14 @@ public class Connection_spi {
     // (This is a utility class to abstract some of the boilerplate code)
     protected static final Console console = new Console();
 
+    public int getAfstand() {
+        return afstand;
+    }
+
+    private int afstand = 0;
+
+
+
 
     private Connection_spi() {
 
@@ -42,11 +50,11 @@ public class Connection_spi {
         try {
             sem.acquire();
             try {
-                System.out.println("Sensor Amount of Permits of the Semaphore "+sem.availablePermits());
-                doConnect();
+                //System.out.println("Sensor Amount of Permits of the Semaphore "+sem.availablePermits());
+                 afstand = doConnect();
             } finally {
                 sem.release();
-                System.out.println("Sensor Amount of Permits of the Semaphore "+sem.availablePermits());
+                //System.out.println("Sensor Amount of Permits of the Semaphore "+sem.availablePermits());
 
             }
         } catch (InterruptedException e) {
@@ -56,7 +64,7 @@ public class Connection_spi {
 
     }
 
-    private void doConnect() {
+    private int doConnect() {
 
         synchronized (this) {
             connections++;
@@ -95,9 +103,14 @@ public class Connection_spi {
             e.printStackTrace();
         }
 
+
+
         synchronized (this) {
             connections--;
         }
+        int test = (int)(Math.random() *50) +1;
+        //System.out.println(test);
+        return  test;
 
     }
 

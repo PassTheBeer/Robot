@@ -7,7 +7,7 @@ public class Main {
 
 	    Robot robot = new Robot();
 
-
+		robot.startRobot();
 
 
 		
