@@ -24,7 +24,9 @@ public class AStar {
     private static double pytho = Math.sqrt(Math.pow(Grid.lengte_node, 2) + Math.pow(Grid.lengte_node, 2));
     private double hWaarde;
 
+
     public AStar(int a_o){
+
         path = new ArrayList<Point>();
         neighbours = new Node[a_o][a_o];
     }

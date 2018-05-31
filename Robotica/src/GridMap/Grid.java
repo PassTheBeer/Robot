@@ -3,16 +3,18 @@ package GridMap;
 import java.awt.Point;
 import java.util.*;
 
-public class Grid {
+public class Grid  implements Runnable{
 
-    AlgoritmeKiezer algokiezer;
+    private AlgoritmeKiezer algokiezer;
 
     //Declareer de hashmap voor het plaatsen van alle coordinaten
     public static HashMap<Point, Obstakel> map;
 
+
     private int aantal_obstakels;
     public static int aantal_onbekenden;
     public static double lengte_node = 5;
+
     private static int grid_width;
     private static int grid_height;
 
@@ -38,6 +40,11 @@ public class Grid {
         genereerCoords();
 
         algokiezer = new AlgoritmeKiezer(getObstakel_coordinaten(), beginEindCoords, getOnbekend_coordinaten());
+    }
+
+    @Override
+    public void run() {
+        algokiezer.RunAStar();
     }
 
     public void genereerCoords() {
@@ -229,6 +236,7 @@ public class Grid {
     public static void setObstakel_coordinaten(ArrayList<Point> obstakel_coordinaten) {
         Grid.obstakel_coordinaten = obstakel_coordinaten;
     }
+
 
 }
 
