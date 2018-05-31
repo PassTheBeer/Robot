@@ -1,16 +1,17 @@
 package GridMap;
 
+import java.awt.*;
+
 public class Main {
 
-	public static void main(String[] args) {
-		
+    public static void main(String[] args) {
 
-	    Robot robot = new Robot();
+        Point position = new Point(0, 0);
+        Robot robot = new Robot(position);
 
-		robot.startRobot();
+        robot.startRobot();
 
 
-		
 //		robot.grid.genereerCoords();
 //		String printer = robot.grid.printGrid(robot.grid.map);
 //
@@ -23,15 +24,13 @@ public class Main {
 //        System.out.println(robot.Sensoren[2].getID());
 
 
-
-
-
         //robot.grid.haalCoordsOp(); // - out comment als je de coordinaten van de nodes wilt sorteren
-		//System.out.println("A* BITCH: ");
-		//robot.algokiezer.RunAStar();
-	//	System.out.println("\n\nDIJKSTRA BITCH:\n");
-		//robot.algokiezer.RunDijkstra();
+        //System.out.println("A* BITCH: ");
+        //robot.algokiezer.RunAStar();
+        //	System.out.println("\n\nDIJKSTRA BITCH:\n");
+        //robot.algokiezer.RunDijkstra();
 
-	}
+    }
+
 
 }

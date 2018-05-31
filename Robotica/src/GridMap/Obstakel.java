@@ -1,24 +1,24 @@
 package GridMap;
 
 public enum Obstakel {
-    l{
+    S{
         public String toString() {
-            return " ";
+            return "S";
         }
     },
-    P{
+    E{
         public String toString() {
-            return "P";
+            return "E";
         }
     },
-    T{
+    M{
         public String toString() {
             return "-";
         }
     },
     N{
         public String toString() {
-            return "N";
+            return " ";
         }
     },
     R{
@@ -30,6 +30,11 @@ public enum Obstakel {
         public String toString() {
             return "O";
         }
+    },
+    P{
+        public String toString() {
+            return "P";
+        }
     };
-    
+
 }

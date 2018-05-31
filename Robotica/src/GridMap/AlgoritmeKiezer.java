@@ -5,50 +5,25 @@ import java.util.ArrayList;
 
 public class AlgoritmeKiezer {
 
-    Grid grid = new Grid();
+    Grid grid;
 
-    private ArrayList<Point> nodes;
     private ArrayList<Point> obstakels;
+    private ArrayList<Point> onbekenden;
     private ArrayList<Point> beginEind;
 
-    AlgoritmeKiezer() {
-        nodes = grid.getNode_coordinaten();
-        obstakels = grid.getOb_coordinaten();
-        beginEind = grid.getBeginEindCoords();
-    }
-
-    public void SelectAlgoritm() {
+    AlgoritmeKiezer(ArrayList<Point> obstakels, ArrayList<Point> beginEind, ArrayList<Point> onbekenden){
+        this.obstakels = obstakels;
+        this.beginEind = beginEind;
+        this.onbekenden = onbekenden;
 
     }
-
     public void RunAStar() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        //System.out.println("ädfadf");
 
+        AStar astar = new AStar(grid.aantal_onbekenden, grid.aantal_nodes);
 
-        //AStar astar = new AStar();
-        //astar.BerekenPad(nodes, obstakels, beginEind);
-        //astar.print(nodes, obstakels); // Outcomment dit als je de coordinaten van nodes & obstakels wilt zien
-    }
+        astar.test(obstakels, beginEind, onbekenden);
 
-    /*public void RunDijkstra() {
-          Dijkstra dijkstra = new Dijkstra();
-          dijkstra.BerekenPad(nodes, obstakels);
-          dijkstra.printResult();
-    }*/
-    public void RunJPS() {
-
-    }
-
-    public void RunHPA() {
-
-    }
-
-    public void RunGreedy() {
-
+        // Outcomment dit als je de coordinaten van nodes & obstakels wilt zien
+        //astar.print(onbekenden);
     }
 }

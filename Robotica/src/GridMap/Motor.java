@@ -7,6 +7,8 @@ public class Motor implements Runnable {
     private boolean richting = true;
 
 
+
+
     public Motor() {
         System.out.println("Motor geïnitialiseerd");
 
@@ -15,25 +17,32 @@ public class Motor implements Runnable {
     }
 
 
-
-
-
     @Override
     public void run() {
+        while (true) {
 
-        setSpeed(50);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("gogo motoren");
+        }
 
     }
 
+
     public int getSpeed() {
+
         return speed;
+
     }
 
     public void setSpeed(int speed) {
-        for(int i = 0; i<10;i++){
 
-            Connection_uart.getInstance().connect(speed);
-        }
+
+        Connection_uart.getInstance().connect(speed);
+
 
         this.speed = speed;
     }

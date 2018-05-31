@@ -3,31 +3,26 @@ package GridMap;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 public class Node {
 
     public final String value;
     public double g_scores;
-    public final double h_scores;
+    public double h_scores;
     public double f_scores = 0;
     public Edge[] adjacencies;
     public Node parent;
 
-    ArrayList<Point> pathnodes;
-    public Node[] nodelist;
+    public static ArrayList<Point> neighbours = new ArrayList<Point>();
     Obstakel obstakel;
 
-
-    public Node(String val, double hVal,ArrayList<Point> n, Node[] nodes, Obstakel obstakel){
+    public Node(String val, double hVal, Point n, Obstakel obstakel){
         value = val;
-        h_scores = hVal;
-        pathnodes = n;
-        nodelist = nodes;
+        h_scores = h_scores + hVal;
+        neighbours.add(n);
         this.obstakel = obstakel;
     }
-
-
-
     public String toString(){
         return value;
     }
@@ -39,7 +34,4 @@ public class Node {
             return cy_1 - cy_2;
         }
     };
-
-
-
 }

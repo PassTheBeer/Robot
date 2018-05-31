@@ -38,8 +38,6 @@ public class Connection_spi {
     private int afstand = 0;
 
 
-
-
     private Connection_spi() {
 
     }
@@ -51,7 +49,7 @@ public class Connection_spi {
             sem.acquire();
             try {
                 //System.out.println("Sensor Amount of Permits of the Semaphore "+sem.availablePermits());
-                 afstand = doConnect();
+                afstand = doConnect();
             } finally {
                 sem.release();
                 //System.out.println("Sensor Amount of Permits of the Semaphore "+sem.availablePermits());
@@ -95,22 +93,20 @@ public class Connection_spi {
 //
 //        }
 //        console.emptyLine();
-
-
+//
+//
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-
-
         synchronized (this) {
             connections--;
         }
-        int test = (int)(Math.random() *50) +1;
+        int test = (int) (Math.random() * 50) + 1;
         //System.out.println(test);
-        return  test;
+        return test;
 
     }
 
