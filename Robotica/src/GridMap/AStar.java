@@ -23,6 +23,8 @@ public class AStar {
     private static double pytho = Math.sqrt(Math.pow(Grid.lengte_node, 2) + Math.pow(Grid.lengte_node, 2));
     private double hWaarde;
 
+    Robot robot;
+
     public AStar(int a_o, int a_n) {
         aantal_onbekenden = a_o;
         path = new ArrayList<Point>();
