@@ -10,8 +10,6 @@ public class Robot {
     Grid grid = new Grid(position);
     AlgoritmeKiezer algokiezer;
 
-
-
     Thread gridThread = new Thread(grid);
 
     private Sensor sensor = new Sensor();
@@ -25,12 +23,9 @@ public class Robot {
 
     Robot(Point position) {
 
-        System.out.println("Robot aangemaakt!! =__=");
+        System.out.println("Robot aangemaakt ...");
         this.position = position;
         //startRobot();
-        
-
-
     }
 
     public void startRobot() {
@@ -42,26 +37,17 @@ public class Robot {
 
         while (true) {
 
-            if (position != Grid.getKeysByValue(Grid.map, Obstakel.P)) {
-
-                //System.out.println(grid.getKeysByValue(grid.map,Obstakel.P));
+            if (position != Grid.getKeysByValue(Grid.map, Obstakel.E)) {
 
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-  
-                System.out.println("ROBOT   ");
-
-                System.out.println("asdfasdfasdf:   " + Grid.getKeysByValue(Grid.map, Obstakel.R));
-
+                System.out.println("Dit is het " + Grid.getKeysByValue(Grid.map, Obstakel.R));
             }
         }
     }
-
-
 
     public Point getPosition() {
         return position;

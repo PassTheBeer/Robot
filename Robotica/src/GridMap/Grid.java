@@ -10,7 +10,6 @@ public class Grid  implements Runnable{
     //Declareer de hashmap voor het plaatsen van alle coordinaten
     public static HashMap<Point, Obstakel> map;
 
-
     private int aantal_obstakels;
     public static int aantal_onbekenden;
     public static double lengte_node = 5;
@@ -142,22 +141,18 @@ public class Grid  implements Runnable{
         map.replace(coords_b, Obstakel.S);
 
         if(coords_e.getX() > 0 && coords_e.getY() > 0) {
-            System.out.println("eind_neg");
             getBeginEindCoords().add(eind_neg);
             map.replace(eind_neg, Obstakel.E);
         }
         else if(coords_e.getX() < 0 && coords_e.getY() > 0) {
-            System.out.println("eind_neg_x: " + eind_neg_x);
             getBeginEindCoords().add(eind_neg_x);
             map.replace(eind_neg_x, Obstakel.E);
         }
         else if(coords_e.getX() > 0 && coords_e.getY() < 0) {
-            System.out.println("eind_neg_y");
             getBeginEindCoords().add(eind_neg_y);
             map.replace(eind_neg_y, Obstakel.E);
         }
         else {
-            System.out.println("else");
             getBeginEindCoords().add(coords_e);
             map.replace(coords_e, Obstakel.E);
         }
@@ -187,7 +182,6 @@ public class Grid  implements Runnable{
     }
 
     public static <Point, Obstakel> Set<Point> getKeysByValue(Map<Point,Obstakel> map, Obstakel value) {
-
         Set<Point> keys = new HashSet<Point>();
 
         for (Map.Entry<Point, Obstakel> entry : map.entrySet()) {

@@ -3,47 +3,30 @@ package GridMap;
 public class Motor implements Runnable {
 
     private int speed = 0;
-
     private boolean richting = true;
-
-
-
 
     public Motor() {
         System.out.println("Motor geïnitialiseerd");
-
         this.speed = 0;
-
     }
-
 
     @Override
     public void run() {
         while (true) {
-
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("gogo motoren");
         }
-
     }
 
-
     public int getSpeed() {
-
         return speed;
-
     }
 
     public void setSpeed(int speed) {
-
-
         Connection_uart.getInstance().connect(speed);
-
-
         this.speed = speed;
     }
 

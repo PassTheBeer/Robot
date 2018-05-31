@@ -17,7 +17,7 @@ public class AStar {
 
     Grid grid;
 
-    Scanner sc = new Scanner(System.in);
+   // Scanner sc = new Scanner(System.in);
 
     private ArrayList<Point> path;
     private Node[][] neighbours;
@@ -46,8 +46,8 @@ public class AStar {
 
     public void runAlgo(ArrayList<Point> ob, ArrayList<Point> be, ArrayList<Point> onb) {
         System.out.println("\n");
-        System.out.println("Wilt de robot terug rijden? (True = ja, False = nee)");
-        boolean terug = sc.nextBoolean();
+//        System.out.println("Wilt de robot terug rijden? (True = ja, False = nee)");
+//        boolean terug = sc.nextBoolean();
 
         //Standaard declaraties voor het duidelijk maken voor toekomstige berekeningen en codes
         double min_h_waarde = Double.MAX_VALUE;
@@ -80,14 +80,15 @@ public class AStar {
             grid.map.replace(eind, Obstakel.E);
         }
         if(ob.contains(temp)) {
-            ob.remove(begin);
-            grid.map.replace(begin, Obstakel.S);
+            ob.remove(temp);
+            grid.map.replace(temp, Obstakel.S);
         }
 
         System.err.println("");
 
         //Voer de onderstaande algoritme uit zolang de robot niet de eindpositie bereikt heeft
         while (!bereikt) {
+
             //Refresh de minimale h waarde steeds. Zodat hij goed berekend wordt voor elke buurman
             min_h_waarde = Double.MAX_VALUE;
             for (int i = 0; i < onb.size(); i++) {
@@ -141,7 +142,7 @@ public class AStar {
             }
             //Even slapen (voor de simulatie)
             try {
-                Thread.sleep(250);
+                Thread.sleep(1000);
             } catch (InterruptedException exc) {
 
             }
@@ -151,7 +152,7 @@ public class AStar {
             //Voeg die plaats toe in de path ArrayList & push
             path.add(begin.getLocation());
             path_terug.push(begin.getLocation());
-            System.out.println(begin.getLocation());
+           // System.out.println(begin.getLocation());
 
             //Als de positie van de robot aan het einde van de map staat, vergroot de map met 1 kolom.
             if (b_x == wall_x) {
@@ -174,25 +175,27 @@ public class AStar {
                 } catch (InterruptedException exc) {
                 }
                 bereikt = true;
-                if(!terug){
-                    System.out.println("Bestemming bereikt en de robot gaat niet terug, Systeem sluit over 2 sec");
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException exc) {
-                    }
-                    System.exit(0);
-                }
+//
+//                if(!terug){
+//                    System.out.println("Bestemming bereikt en de robot gaat niet terug, Systeem sluit over 2 sec");
+//                    try {
+//                        Thread.sleep(2000);
+//                    } catch (InterruptedException exc) {
+//                    }
+//                    System.exit(0);
+//                }
             }
 
             //Verplaats de positie van de robot met de gevonden positie
             b_x = begin.getX();
             b_y = begin.getY();
 
+
             y++;
 
         }
         //Als de robot het eindpunt bereikt heeft, dan loopt hij de Stack af zodat de robot terug loopt.
-        if (bereikt & terug) {
+        if (bereikt) {
             Iterator<Point> i = path_terug.iterator();
             while (i.hasNext()) {
                 Point t = (Point) path_terug.pop();
@@ -200,7 +203,7 @@ public class AStar {
                 grid.map.replace(t, Obstakel.R);
                 System.out.println(Grid.printGrid(Grid.map));
                 try {
-                    Thread.sleep(250);
+                    Thread.sleep(1000);
                 } catch (InterruptedException exc) {
                 }
                 grid.map.replace(t, Obstakel.N);
