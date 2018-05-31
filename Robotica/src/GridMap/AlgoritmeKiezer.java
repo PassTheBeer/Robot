@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 public class AlgoritmeKiezer {
 
-    Grid grid;
-
     private ArrayList<Point> obstakels;
     private ArrayList<Point> onbekenden;
     private ArrayList<Point> beginEind;
@@ -19,9 +17,9 @@ public class AlgoritmeKiezer {
     }
     public void RunAStar() {
 
-        AStar astar = new AStar(grid.aantal_onbekenden, grid.aantal_nodes);
+        AStar astar = new AStar(Grid.aantal_onbekenden);
 
-        astar.test(obstakels, beginEind, onbekenden);
+        astar.runAlgo(obstakels, beginEind, onbekenden);
 
         // Outcomment dit als je de coordinaten van nodes & obstakels wilt zien
         //astar.print(onbekenden);

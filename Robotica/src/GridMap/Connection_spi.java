@@ -66,7 +66,9 @@ public class Connection_spi {
 
         synchronized (this) {
             connections++;
-            System.out.println(" spi Amount of connections: " + connections);
+
+            //System.out.println("spi Amount of connections: " + connections);
+
         }
 
 //        console.title("<-- The Pi4J Project -->", "SPI test program using MCP3004/MCP3008 AtoD Chip");

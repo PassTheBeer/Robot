@@ -24,10 +24,11 @@ public class Robot {
     public static int _tmp = 0;
 
     Robot(Point position) {
+
         System.out.println("Robot aangemaakt!! =__=");
         this.position = position;
         //startRobot();
-
+        
 
 
     }
@@ -51,32 +52,22 @@ public class Robot {
                     e.printStackTrace();
                 }
 
+  
                 System.out.println("ROBOT   ");
 
                 System.out.println("asdfasdfasdf:   " + Grid.getKeysByValue(Grid.map, Obstakel.R));
 
-
-
-
             }
-
-
         }
-
-
     }
-
-
 
 
 
     public Point getPosition() {
         return position;
     }
-
     public void setPosition(Point position) {
         this.position = position;
     }
-
 
 }

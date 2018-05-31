@@ -7,12 +7,14 @@ public class Grid  implements Runnable{
 
     private AlgoritmeKiezer algokiezer;
 
-    public static HashMap<Point, Obstakel> map = new HashMap<Point, Obstakel>();
+    //Declareer de hashmap voor het plaatsen van alle coordinaten
+    public static HashMap<Point, Obstakel> map;
 
-    static int aantal_nodes = 0;
+
     private int aantal_obstakels;
-    static int aantal_onbekenden;
-    static double lengte_node = 5;
+    public static int aantal_onbekenden;
+    public static double lengte_node = 5;
+
     private static int grid_width;
     private static int grid_height;
 
@@ -24,12 +26,13 @@ public class Grid  implements Runnable{
     private static Point eindpunt;
 
     Grid(Point r_pos) {
+        map = new HashMap<Point, Obstakel>();
         obstakel_coordinaten = new ArrayList<Point>();
         beginEindCoords = new ArrayList<Point>();
         onbekend_coordinaten = new ArrayList<Point>();
 
         beginpunt = new Point(r_pos);
-        eindpunt = new Point(6,8);
+        eindpunt = new Point(-6,5);
 
         setGrid_width(Math.abs((int)eindpunt.getX()));
         setGrid_height(Math.abs((int)eindpunt.getY()));
@@ -83,22 +86,6 @@ public class Grid  implements Runnable{
 
         return grid;
     }
-    public String printBuur(Point coords) {
-
-        String grid = "";
-
-        for (int row = -getGrid_height(); row < getGrid_height(); row++) {
-            for (int column = -getGrid_width(); column < getGrid_width(); column++) {
-                if (map.containsKey(new Point(column, row))) {
-                    grid += map.get(new Point(column, row));
-                } else {
-                    grid += " ";
-                }
-            }
-            grid += "\n";
-        }
-        return grid;
-    }
 
     public void plaatsOnbekend(Point coords){
         map.put(coords, Obstakel.O);
@@ -110,12 +97,6 @@ public class Grid  implements Runnable{
         if(coords.getX() == eindpunt.getX() && coords.getY() == eindpunt.getY()) {
             map.remove(coords);
             map.put(coords, Obstakel.E);
-            try{
-                Thread.sleep(500);
-            }
-            catch(InterruptedException exc) {
-
-            }
         }
         else {
             map.put(coords, Obstakel.M);
@@ -181,10 +162,17 @@ public class Grid  implements Runnable{
             map.replace(coords_e, Obstakel.E);
         }
     }
+    public int getAantal_obstakels() {
+        return aantal_obstakels;
+    }
 
-//    public void padZien(HashMap<Point, Obstakel> map, Point coords) {
-//        map.put(coords, Obstakel.l);
-//    }
+    public void setAantal_obstakels(int aantal_obstakels) {
+        this.aantal_obstakels = aantal_obstakels;
+    }
+
+    public Point getBeginpunt() {
+        return beginpunt;
+    }
 
     public static void sortNodes() {
         Collections.sort(getOnbekend_coordinaten(), Node.comp);
