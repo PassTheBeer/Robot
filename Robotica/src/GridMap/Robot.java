@@ -16,14 +16,12 @@ public class Robot {
     public static int _tmp = 0;
 
     Robot(Point position) {
-        System.out.println("Robot aangemaakt!! =__=");
+        System.out.println("Robot aangemaakt ..");
 
         this.position = position;
         grid = new Grid(position);
 
-
         Thread sensorThread = new Thread(new Sensor());
-
         sensorThread.start();
 
         Thread linkerMotor = new Thread(this.linkerMotor);
@@ -32,7 +30,6 @@ public class Robot {
         rechterMotor.start();
 
         grid.algokiezer.RunAStar();
-
 
     }
 
@@ -49,27 +46,10 @@ public class Robot {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                System.out.println("ROBOT   ");
-
-
-
-
-
-
-
             }
-
-
         }
-
-
     }
 
-
-
-
-    //
     public void RijNaarVoren() {
         rechterMotor.setRichting(true);
         linkerMotor.setRichting(true);
@@ -79,7 +59,6 @@ public class Robot {
 
     }
 
-    //
     public void RijNaarAchter() {
         rechterMotor.setRichting(false);
         linkerMotor.setRichting(false);
@@ -97,15 +76,11 @@ public class Robot {
 //
 //    }
 
-
-
     public Point getPosition() {
         return position;
     }
-
     public void setPosition(Point position) {
         this.position = position;
     }
-
 
 }

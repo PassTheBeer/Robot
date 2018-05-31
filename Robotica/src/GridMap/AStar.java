@@ -2,6 +2,7 @@ package GridMap;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -15,18 +16,17 @@ import java.util.Stack;
 public class AStar {
 
     Grid grid;
-    private int aantal_onbekenden;
 
-    Node anode;
+    Scanner sc = new Scanner(System.in);
+
     private ArrayList<Point> path;
     private Node[][] neighbours;
     private static double pytho = Math.sqrt(Math.pow(Grid.lengte_node, 2) + Math.pow(Grid.lengte_node, 2));
     private double hWaarde;
 
-    public AStar(int a_o, int a_n) {
-        aantal_onbekenden = a_o;
+    public AStar(int a_o){
         path = new ArrayList<Point>();
-        neighbours = new Node[aantal_onbekenden][aantal_onbekenden];
+        neighbours = new Node[a_o][a_o];
     }
 
     //BerekenH Waarde methode
@@ -36,15 +36,18 @@ public class AStar {
     }
 
     public void print(ArrayList<Point> onb) {
-        for (int i = 0; i < aantal_onbekenden; i++) {
+        for (int i = 0; i < onb.size(); i++) {
             System.out.println("Node " + i + ": " + onb.get(i).getX() + "," + onb.get(i).getY());
         }
         System.out.println("");
     }
 
-    public void test(ArrayList<Point> ob, ArrayList<Point> be, ArrayList<Point> onb) {
+    public void runAlgo(ArrayList<Point> ob, ArrayList<Point> be, ArrayList<Point> onb) {
         System.out.println("\n");
+        System.out.println("Wilt de robot terug rijden? (True = ja, False = nee)");
+        boolean terug = sc.nextBoolean();
 
+        //Standaard declaraties voor het duidelijk maken voor toekomstige berekeningen en codes
         double min_h_waarde = Double.MAX_VALUE;
 
         double b_x = be.get(0).getX();
@@ -58,53 +61,75 @@ public class AStar {
         Point temp = new Point(0, 0);
         Point begin = new Point((int) b_x, (int) b_y);
         Point eind = new Point((int) e_x, (int) e_y);
-        Stack s = new Stack();
+        Stack path_terug = new Stack();
 
         boolean bereikt = false;
 
+        //Extra indexes voor in de for loop
         int y = 0, j = 0;
 
-        s.push(temp);
-        path.add(begin);
+        //Zet de begin positie al vast in de Stack (voor de terug weg) en in het pad (heen weg)
+        path_terug.push(temp);
+        path.add(temp);
 
+        //Zorg er voor dat als er een obstakel in de begin of eind positie geplaatst wordt. Haal hem dan weg
         if (ob.contains(eind)) {
             ob.remove(eind);
+            grid.map.replace(eind, Obstakel.E);
+        }
+        if(ob.contains(temp)) {
+            ob.remove(begin);
+            grid.map.replace(begin, Obstakel.S);
         }
 
         System.err.println("");
 
+        //Voer de onderstaande algoritme uit zolang de robot niet de eindpositie bereikt heeft
         while (!bereikt) {
-            min_h_waarde = 1000000;
+            //Refresh de minimale h waarde steeds. Zodat hij goed berekend wordt voor elke buurman
+            min_h_waarde = Double.MAX_VALUE;
             for (int i = 0; i < onb.size(); i++) {
 
+                //Bereken het verschil tussen de pos robot en elk punt in de map
                 double vers_x = b_x - onb.get(i).getX();
                 double vers_y = b_y - onb.get(i).getY();
 
+                //Is het verschil ongelijk aan de pos robot en zit het verschil tussen de -1 en 1. Dan is het een buur
                 if (!(vers_x == 0 && vers_y == 0) && (vers_x >= -1 && vers_x <= 1) && (vers_y >= -1 && vers_y <= 1)) {
 
+                    //Maak een buur point aan met de gevonden coordinaten
                     Point buur_p = new Point((int) onb.get(i).getX(), (int) onb.get(i).getY());
 
+                    //Als er obstakels aanwezig zijn
                     if (ob.size() != 0) {
                         for (int k = 0; k < ob.size(); k++) {
-                            if (buur_p.getX() == ob.get(k).getX() && buur_p.getY() == ob.get(k).getY()) {
-                                Grid.map.replace(ob.get(k), Obstakel.M);
-                                hWaarde = Double.MAX_VALUE;
-                                break;
-                            } else {
-                                Grid.map.replace(buur_p, Obstakel.N);
-                                hWaarde = BerekenH(e_x, e_y, onb.get(i).getX(), onb.get(i).getY());
-                                if (onb.get(i).getX() == temp.getX() && onb.get(i).getY() == temp.getY()) {
-                                    hWaarde += 2;
+                                //Als de coordinaat van een buur gelijk staat aan een van de obstakels.
+                                //Zet dan de hWaarde op maximaal (Zo gaat de robot nooit door een obstakel)
+                                if (buur_p.getX() == ob.get(k).getX() && buur_p.getY() == ob.get(k).getY()) {
+                                    Grid.map.replace(ob.get(k), Obstakel.M);
+                                    hWaarde = Double.MAX_VALUE;
+                                    break;
                                 }
-                            }
+                                //Zo niet, Bereken dan de hWaarde voor die buurman
+                                else {
+                                    Grid.map.replace(buur_p, Obstakel.N);
+                                    hWaarde = BerekenH(e_x, e_y, onb.get(i).getX(), onb.get(i).getY());
+//                                    if (onb.get(i).getX() == temp.getX() && onb.get(i).getY() == temp.getY()) {
+//                                        hWaarde += 2;
+//                                    }
+                                }
+                            //Maak de buurman nodes met de berekende hWaarde (Dit is voor de sier)
                             neighbours[j][y] = new Node("Node " + y, hWaarde, buur_p, Obstakel.N);
                         }
-                    } else {
+                    }
+                    //Als er geen obstakels zijn
+                    else {
                         Grid.map.replace(buur_p, Obstakel.N);
                         hWaarde = BerekenH(e_x, e_y, onb.get(i).getX(), onb.get(i).getY());
                         neighbours[j][y] = new Node("Node " + y, hWaarde, buur_p, Obstakel.N);
                     }
-
+                    //Verplaats Point begin steeds naar het punt waarde de hWaarde het kleinst is.
+                    //Het point waar begin het laatst staat, is het punt met de laagste hWaarde
                     if (hWaarde < min_h_waarde) {
                         min_h_waarde = hWaarde;
                         begin.move((int) buur_p.getX(), (int) buur_p.getY());
@@ -112,27 +137,34 @@ public class AStar {
                     j++;
                 }
             }
+            //Even slapen (voor de simulatie)
             try {
                 Thread.sleep(250);
             } catch (InterruptedException exc) {
 
             }
+            //Laat zien dat de robot van plaats is verwisseld
             grid.map.replace(new Point((int) b_x, (int) b_y), Obstakel.R);
 
+            //Voeg die plaats toe in de path ArrayList & push
             path.add(begin.getLocation());
-            s.push(begin.getLocation());
+            path_terug.push(begin.getLocation());
             System.out.println(begin.getLocation());
 
+            //Als de positie van de robot aan het einde van de map staat, vergroot de map met 1 kolom.
             if (b_x == wall_x) {
                 Grid.voeg_xRij(b_x);
                 wall_x = Grid.getGrid_width();
             }
+            //Als de positie van de robot aan het einde van de map staat, vergroot de map met 1 rij.
             if (b_y == wall_y) {
                 Grid.voeg_yRij(b_y);
                 wall_y = Grid.getGrid_height();
             }
+            //Print de map (voor de simulatie)
             System.out.println(Grid.printGrid(Grid.map));
 
+            //Als de robot het eindpunt bereikt heeft, wacht dan eventjes en zet bereikt op true zodat hij uit de for loop gaat
             if (b_x == eind.getX() && b_y == eind.getY()) {
                 System.out.println("Bestemming bereikt. U heeft 2 seconden te tijd om een verfrissing te pakken! SHIET OP");
                 try {
@@ -140,18 +172,28 @@ public class AStar {
                 } catch (InterruptedException exc) {
                 }
                 bereikt = true;
+                if(!terug){
+                    System.out.println("Bestemming bereikt en de robot gaat niet terug, Systeem sluit over 2 sec");
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException exc) {
+                    }
+                    System.exit(0);
+                }
             }
 
+            //Verplaats de positie van de robot met de gevonden positie
             b_x = begin.getX();
             b_y = begin.getY();
 
             y++;
 
         }
-        if (bereikt) {
-            Iterator<Point> i = s.iterator();
+        //Als de robot het eindpunt bereikt heeft, dan loopt hij de Stack af zodat de robot terug loopt.
+        if (bereikt & terug) {
+            Iterator<Point> i = path_terug.iterator();
             while (i.hasNext()) {
-                Point t = (Point) s.pop();
+                Point t = (Point) path_terug.pop();
 
                 grid.map.replace(t, Obstakel.R);
                 System.out.println(Grid.printGrid(Grid.map));
@@ -159,12 +201,18 @@ public class AStar {
                     Thread.sleep(250);
                 } catch (InterruptedException exc) {
                 }
-
                 grid.map.replace(t, Obstakel.N);
             }
+            System.out.println("Robot weer terug bij het begin, Systeem sluit over 2 sec");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException exc) {
+            }
+            System.exit(0);
         }
     }
 
+    //Print de alle nodes (voor de simulatie)
     public void printPath() {
         Iterator<Point> it = path.iterator();
         while (it.hasNext()) {

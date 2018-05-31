@@ -46,7 +46,7 @@ public class Connection_uart {
 
         synchronized (this) {
             connections++;
-            System.out.println("Amount of connections: " + connections);
+            //System.out.println("Amount of connections: " + connections);
         }
 
         /*
