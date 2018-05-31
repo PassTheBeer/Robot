@@ -56,6 +56,8 @@ public class Robot {
                 System.out.println("asdfasdfasdf:   " + Grid.getKeysByValue(Grid.map, Obstakel.R));
 
 
+
+
             }
 
 
