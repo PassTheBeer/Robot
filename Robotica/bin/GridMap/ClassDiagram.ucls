@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="GridMap.Coords" project="Robotica" file="/Robotica/src/GridMap/Coords.java" 
+  <class id="1" language="java" name="Pathfinding_Simulatie.Coords" project="Robotica" file="/Robotica/src/Pathfinding_Simulatie/Coords.java"
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="153" width="138" x="522" y="369"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="GridMap.Grid" project="Robotica" file="/Robotica/src/GridMap/Grid.java" 
+  <class id="2" language="java" name="Pathfinding_Simulatie.Grid" project="Robotica" file="/Robotica/src/Pathfinding_Simulatie/Grid.java"
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="177" y="448"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="3" language="java" name="GridMap.Obstakel" project="Robotica" 
-    file="/Robotica/src/GridMap/Obstakel.java" binary="false" corner="BOTTOM_RIGHT">    
+  <enumeration id="3" language="java" name="Pathfinding_Simulatie.Obstakel" project="Robotica"
+    file="/Robotica/src/Pathfinding_Simulatie/Obstakel.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="626" y="148"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="4" language="java" name="GridMap.AlgoritmeKiezer" project="Robotica" 
-    file="/Robotica/src/GridMap/AlgoritmeKiezer.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="Pathfinding_Simulatie.AlgoritmeKiezer" project="Robotica"
+    file="/Robotica/src/Pathfinding_Simulatie/AlgoritmeKiezer.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="386" y="149"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,7 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="GridMap.Robot" project="Robotica" file="/Robotica/src/GridMap/Robot.java" 
+  <class id="5" language="java" name="Pathfinding_Simulatie.Robot" project="Robotica" file="/Robotica/src/Pathfinding_Simulatie/Robot.java"
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="96" y="135"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

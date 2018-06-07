@@ -1,13 +1,8 @@
-package GridMap;
+package Pathfinding_Simulatie;
 
 import java.util.concurrent.Semaphore;
 
-import com.pi4j.io.serial.*;
-import com.pi4j.util.CommandArgumentParser;
-import com.pi4j.util.Console;
-
 import java.io.IOException;
-import java.util.Date;
 
 public class Connection_uart {
 
